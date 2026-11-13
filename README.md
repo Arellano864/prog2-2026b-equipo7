@@ -9,3 +9,4 @@ python main.py
 ## Integrantes
 
 Jorge Ivan Ortega Mesa
+Johan no estuvo aqui jsjsjs
