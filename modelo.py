@@ -1,10 +1,11 @@
+
 """Clases principales del sistema escolar."""
 
 
 class Persona:
     """Clase padre de alumnos y docentes."""
 
-    def _init_(self, codigo, nombre):
+    def __init__(self, codigo, nombre):
         """Inicializa los datos comunes."""
         self._codigo = str(codigo).strip()
         self._nombre = str(nombre).strip()
@@ -29,9 +30,9 @@ class Persona:
 class Alumno(Persona):
     """Representa a un alumno."""
 
-    def _init_(self, codigo, nombre, carrera):
+    def __init__(self, codigo, nombre, carrera):
         """Inicializa los datos del alumno."""
-        super()._init_(codigo, nombre)
+        super().__init__(codigo, nombre)
         self._carrera = str(carrera).strip()
 
     @property
@@ -50,9 +51,9 @@ class Alumno(Persona):
 class Docente(Persona):
     """Representa a un docente."""
 
-    def _init_(self, codigo, nombre, departamento):
+    def __init__(self, codigo, nombre, departamento):
         """Inicializa los datos del docente."""
-        super()._init_(codigo, nombre)
+        super().__init__(codigo, nombre)
         self._departamento = str(departamento).strip()
 
     @property
@@ -72,7 +73,7 @@ class Docente(Persona):
 class Inscripcion:
     """Relaciona una persona con una materia."""
 
-    def _init_(self, codigo_persona, clave_materia):
+    def __init__(self, codigo_persona, clave_materia):
         """Inicializa una inscripcion."""
         self._codigo_persona = str(codigo_persona)
         self._clave_materia = str(clave_materia)
@@ -91,7 +92,7 @@ class Inscripcion:
 class Materia:
     """Representa una materia con cupo limitado."""
 
-    def _init_(self, clave, nombre, cupo):
+    def __init__(self, clave, nombre, cupo):
         """Inicializa los datos de la materia."""
         self._clave = str(clave).strip()
         self._nombre = str(nombre).strip()
