@@ -11,7 +11,7 @@ class Persona:
 
     @property
     def codigo(self):
-        """Devuelve el código."""
+        """Devuelve el codigo."""
         return self._codigo
 
     @property
@@ -22,7 +22,7 @@ class Persona:
     def describir(self):
         """Describe a la persona."""
         raise NotImplementedError(
-            "Las clases hijas deben implementar este método."
+            "Las clases hijas deben implementar este metodo."
         )
 
 
@@ -42,7 +42,7 @@ class Alumno(Persona):
     def describir(self):
         """Describe al alumno."""
         return (
-            f"Alumno | Código: {self._codigo} | "
+            f"Alumno | Codigo: {self._codigo} | "
             f"Nombre: {self._nombre} | Carrera: {self._carrera}"
         )
 
@@ -63,7 +63,7 @@ class Docente(Persona):
     def describir(self):
         """Describe al docente."""
         return (
-            f"Docente | Código: {self._codigo} | "
+            f"Docente | Codigo: {self._codigo} | "
             f"Nombre: {self._nombre} | "
             f"Departamento: {self._departamento}"
         )
@@ -73,13 +73,13 @@ class Inscripcion:
     """Relaciona una persona con una materia."""
 
     def _init_(self, codigo_persona, clave_materia):
-        """Inicializa una inscripción."""
+        """Inicializa una inscripcion."""
         self._codigo_persona = str(codigo_persona)
         self._clave_materia = str(clave_materia)
 
     @property
     def codigo_persona(self):
-        """Devuelve el código de la persona."""
+        """Devuelve el codigo de la persona."""
         return self._codigo_persona
 
     @property
@@ -124,5 +124,5 @@ class Materia:
         return self._cupo - len(self._inscripciones)
 
     def agregar_inscripcion(self, inscripcion):
-        """Agrega una inscripción a la materia."""
+        """Agrega una inscripcion a la materia."""
         self._inscripciones.append(inscripcion)
