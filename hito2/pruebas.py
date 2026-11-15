@@ -54,7 +54,7 @@ class PruebasSistemaEscolar(unittest.TestCase):
         )
 
     def test_nombre_vacio(self):
-        """Rechaza nombres vacíos."""
+        """Rechaza nombres vacios."""
 
         with self.assertRaisesRegex(
             ValueError, "nombre es obligatorio"
@@ -84,34 +84,34 @@ class PruebasSistemaEscolar(unittest.TestCase):
             )
 
     def test_codigo_longitud(self):
-        """Rechaza códigos que no tienen nueve dígitos."""
+        """Rechaza codigos que no tienen nueve digitos."""
 
         with self.assertRaisesRegex(
-            ValueError, "9 dígitos"
+            ValueError, "9 digitos"
         ):
             self.sistema.registrar(
                 Alumno("12345", "Ana", "Ciberseguridad")
             )
 
     def test_codigo_con_letras(self):
-        """Rechaza códigos con letras."""
+        """Rechaza codigos con letras."""
 
         with self.assertRaisesRegex(
-            ValueError, "solo admite dígitos"
+            ValueError, "solo admite digitos"
         ):
             self.sistema.registrar(
                 Alumno("12345AB89", "Ana", "Ciberseguridad")
             )
 
     def test_codigo_repetido(self):
-        """Rechaza códigos repetidos entre tipos."""
+        """Rechaza codigos repetidos entre tipos."""
 
         self.sistema.registrar(
             Alumno("123456789", "Ana", "Ciberseguridad")
         )
 
         with self.assertRaisesRegex(
-            ValueError, "ya está registrado"
+            ValueError, "ya esta registrado"
         ):
             self.sistema.registrar(
                 Docente("123456789", "Luis", "Computacion")
@@ -149,7 +149,7 @@ class PruebasSistemaEscolar(unittest.TestCase):
             )
 
     def test_persona_no_registrada(self):
-        """Rechaza personas que no están registradas."""
+        """Rechaza personas que no estan registradas."""
 
         with self.assertRaisesRegex(ValueError, "Primero"):
             self.sistema.asignar(
@@ -170,7 +170,7 @@ class PruebasSistemaEscolar(unittest.TestCase):
         )
 
         with self.assertRaisesRegex(
-            ValueError, "ya está inscrita"
+            ValueError, "ya esta inscrita"
         ):
             self.sistema.asignar(
                 "123456789",
@@ -196,7 +196,7 @@ class PruebasSistemaEscolar(unittest.TestCase):
         self.sistema.asignar("234567891", "MAT101")
 
         with self.assertRaisesRegex(
-            ValueError, "está llena"
+            ValueError, "esta llena"
         ):
             self.sistema.asignar(
                 "345678912",
@@ -221,7 +221,7 @@ class PruebasSistemaEscolar(unittest.TestCase):
             )
 
     def test_guardar_y_cargar(self):
-        """Comprueba la recuperación de información."""
+        """Comprueba la recuperacion de informacion."""
 
         self.sistema.registrar(
             Alumno("123456789", "Ana", "Ciberseguridad")
