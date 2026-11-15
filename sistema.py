@@ -1,4 +1,4 @@
-"""Administración del sistema escolar."""
+"""Administracion del sistema escolar."""
 
 from modelo import Alumno, Docente, Materia, Inscripcion
 from almacen import Bitacora
@@ -14,18 +14,18 @@ class SistemaEscolar:
         self._bitacora = Bitacora()
 
     def _validar_codigo(self, codigo):
-        """Comprueba que el código tenga nueve dígitos."""
+        """Comprueba que el codigo tenga nueve digitos."""
 
         codigo = str(codigo)
 
         if not codigo.isascii() or not codigo.isdigit():
             raise ValueError(
-                "El código solo admite dígitos."
+                "El codigo solo admite digitos."
             )
 
         if len(codigo) != 9:
             raise ValueError(
-                "El código debe tener exactamente 9 dígitos."
+                "El codigo debe tener exactamente 9 digitos."
             )
 
     def registrar(self, objeto):
@@ -57,13 +57,13 @@ class SistemaEscolar:
 
         if objeto.codigo in self._personas:
             raise ValueError(
-                "Ese código ya está registrado."
+                "Ese codigo ya esta registrado."
             )
 
         self._personas[objeto.codigo] = objeto
 
         self._bitacora.registrar_evento(
-            f"Se registró {objeto.__class__.__name__}: "
+            f"Se registro {objeto.__class__.__name__}: "
             f"{objeto.codigo}"
         )
 
@@ -91,18 +91,18 @@ class SistemaEscolar:
             or materia.cupo <= 0
         ):
             raise ValueError(
-                "El cupo debe ser un número entero mayor que cero."
+                "El cupo debe ser un numero entero mayor que cero."
             )
 
         if materia.clave in self._materias:
             raise ValueError(
-                "Esa clave de materia ya está registrada."
+                "Esa clave de materia ya esta registrada."
             )
 
         self._materias[materia.clave] = materia
 
         self._bitacora.registrar_evento(
-            f"Se agregó la materia: {materia.clave}"
+            f"Se agrego la materia: {materia.clave}"
         )
 
     def asignar(self, identificador, clave):
@@ -127,12 +127,12 @@ class SistemaEscolar:
 
             if inscripcion.codigo_persona == codigo:
                 raise ValueError(
-                    "La persona ya está inscrita en esta materia."
+                    "La persona ya esta inscrita en esta materia."
                 )
 
         if materia.lugares_disponibles <= 0:
             raise ValueError(
-                "La materia está llena."
+                "La materia esta llena."
             )
 
         nueva_inscripcion = Inscripcion(
@@ -145,7 +145,7 @@ class SistemaEscolar:
         )
 
         self._bitacora.registrar_evento(
-            f"Se inscribió {codigo} en la materia {clave}"
+            f"Se inscribio {codigo} en la materia {clave}"
         )
 
     def listar(self):
