@@ -1,0 +1,32 @@
+{
+    "personas": [
+        {
+            "tipo": "alumno",
+            "codigo": "123456789",
+            "nombre": "Ana",
+            "carrera": "Ciberseguridad"
+        },
+        {
+            "tipo": "docente",
+            "codigo": "987654321",
+            "nombre": "Julian",
+            "departamento": "Hacking"
+        }
+    ],
+    "materias": [
+        {
+            "clave": "3312",
+            "nombre": "Hacking",
+            "cupo": 20,
+            "inscripciones": [
+                "123456789"
+            ]
+        }
+    ],
+    "eventos": [
+        "Se registro Alumno: 123456789",
+        "Se registro Docente: 987654321",
+        "Se agrego la materia: 3312",
+        "Se inscribio 123456789 en la materia 3312"
+    ]
+}
