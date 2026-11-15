@@ -1,4 +1,4 @@
-"""Almacenamiento y recuperación de información."""
+"""Almacenamiento y recuperacion de informacion."""
 
 import json
 from pathlib import Path
@@ -10,7 +10,7 @@ class Bitacora:
     """Registra los eventos del sistema."""
 
     def __init__(self):
-        """Inicializa una bitácora vacía."""
+        """Inicializa una bitacora vacia."""
         self._eventos = []
 
     def registrar_evento(self, mensaje):
@@ -78,7 +78,7 @@ def guardar(sistema, ruta):
 
 
 def cargar(sistema, ruta):
-    """Recupera la información del archivo JSON."""
+    """Recupera la informacion del archivo JSON."""
 
     from sistema import SistemaEscolar
 
@@ -96,7 +96,7 @@ def cargar(sistema, ruta):
 
     except json.JSONDecodeError as error:
         raise ValueError(
-            "El archivo de datos está dañado."
+            "El archivo de datos esta dañado."
         ) from error
 
     except OSError as error:
