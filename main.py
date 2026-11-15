@@ -16,19 +16,19 @@ def mostrar_menu():
     print("2. Registrar docente")
     print("3. Agregar materia")
     print("4. Inscribir persona")
-    print("5. Listar información")
-    print("6. Guardar información")
+    print("5. Listar informacion")
+    print("6. Guardar informacion")
     print("0. Guardar y salir")
 
 
 def ejecutar():
-    """Ejecuta el menú principal."""
+    """Ejecuta el menu principal."""
 
     sistema = SistemaEscolar()
 
     try:
         cargar(sistema, ARCHIVO_DATOS)
-        print("Información cargada correctamente.")
+        print("Informacion cargada correctamente.")
 
     except (ValueError, OSError) as error:
         print(f"No se pudieron cargar los datos: {error}")
@@ -37,13 +37,13 @@ def ejecutar():
 
         mostrar_menu()
 
-        opcion = input("Selecciona una opción: ").strip()
+        opcion = input("Selecciona una opcion: ").strip()
 
         try:
 
             if opcion == "1":
 
-                codigo = input("Código de 9 dígitos: ")
+                codigo = input("Codigo de 9 digitos: ")
                 nombre = input("Nombre: ")
                 carrera = input("Carrera: ")
 
@@ -59,7 +59,7 @@ def ejecutar():
 
             elif opcion == "2":
 
-                codigo = input("Código de 9 dígitos: ")
+                codigo = input("Codigo de 9 digitos: ")
                 nombre = input("Nombre: ")
                 departamento = input("Departamento: ")
 
@@ -77,7 +77,7 @@ def ejecutar():
 
                 clave = input("Clave de la materia: ")
                 nombre = input("Nombre de la materia: ")
-                cupo = int(input("Cupo máximo: "))
+                cupo = int(input("Cupo maximo: "))
 
                 materia = Materia(
                     clave,
@@ -91,7 +91,7 @@ def ejecutar():
 
             elif opcion == "4":
 
-                codigo = input("Código de la persona: ")
+                codigo = input("Codigo de la persona: ")
                 clave = input("Clave de la materia: ")
 
                 sistema.asignar(
@@ -99,7 +99,7 @@ def ejecutar():
                     clave
                 )
 
-                print("Inscripción realizada correctamente.")
+                print("Inscripcion realizada correctamente.")
 
             elif opcion == "5":
 
@@ -112,7 +112,7 @@ def ejecutar():
                     ARCHIVO_DATOS
                 )
 
-                print("Información guardada correctamente.")
+                print("Informacion guardada correctamente.")
 
             elif opcion == "0":
 
@@ -121,17 +121,17 @@ def ejecutar():
                     ARCHIVO_DATOS
                 )
 
-                print("Información guardada. Hasta luego.")
+                print("Informacion guardada. Hasta luego.")
 
                 break
 
             else:
 
-                print("Opción no válida.")
+                print("Opcion no volida.")
 
         except (ValueError, TypeError) as error:
 
-            print(f"No se pudo realizar la operación: {error}")
+            print(f"No se pudo realizar la operacion: {error}")
 
 
 if __name__ == "__main__":
