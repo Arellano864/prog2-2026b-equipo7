@@ -21,12 +21,19 @@
             "inscripciones": [
                 "123456789"
             ]
+        },
+        {
+            "clave": "4567",
+            "nombre": "Ciencias",
+            "cupo": 25,
+            "inscripciones": []
         }
     ],
     "eventos": [
         "Se registro Alumno: 123456789",
         "Se registro Docente: 987654321",
         "Se agrego la materia: 3312",
-        "Se inscribio 123456789 en la materia 3312"
+        "Se inscribio 123456789 en la materia 3312",
+        "Se agrego la materia: 4567"
     ]
 }
