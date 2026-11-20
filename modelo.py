@@ -7,6 +7,7 @@ class Persona:
 
     def __init__(self, codigo, nombre):
         """Inicializa los datos comunes."""
+
         codigo = str(codigo).strip()
         nombre = str(nombre).strip()
 
@@ -15,6 +16,21 @@ class Persona:
 
         if not nombre:
             raise ValueError("El nombre es obligatorio.")
+
+        partes = nombre.split()
+
+        for parte in partes:
+
+            palabra = (
+                parte.replace("-", "")
+                .replace("'", "")
+                .replace("’", "")
+            )
+
+            if not palabra.isalpha():
+                raise ValueError(
+                    "El nombre solo debe contener letras."
+                )
 
         self._codigo = codigo
         self._nombre = nombre
@@ -41,12 +57,18 @@ class Alumno(Persona):
 
     def __init__(self, codigo, nombre, carrera):
         """Inicializa los datos del alumno."""
+
         super().__init__(codigo, nombre)
 
         carrera = str(carrera).strip()
 
         if not carrera:
             raise ValueError("La carrera es obligatoria.")
+
+        if not any(letra.isalpha() for letra in carrera):
+            raise ValueError(
+                "La carrera debe contener letras."
+            )
 
         self._carrera = carrera
 
@@ -68,12 +90,18 @@ class Docente(Persona):
 
     def __init__(self, codigo, nombre, departamento):
         """Inicializa los datos del docente."""
+
         super().__init__(codigo, nombre)
 
         departamento = str(departamento).strip()
 
         if not departamento:
             raise ValueError("El departamento es obligatorio.")
+
+        if not any(letra.isalpha() for letra in departamento):
+            raise ValueError(
+                "El departamento debe contener letras."
+            )
 
         self._departamento = departamento
 
@@ -96,6 +124,7 @@ class Inscripcion:
 
     def __init__(self, codigo_persona, clave_materia):
         """Inicializa una inscripcion."""
+
         codigo_persona = str(codigo_persona).strip()
         clave_materia = str(clave_materia).strip()
 
@@ -128,6 +157,7 @@ class Materia:
 
     def __init__(self, clave, nombre, cupo):
         """Inicializa los datos de la materia."""
+
         clave = str(clave).strip()
         nombre = str(nombre).strip()
 
@@ -136,6 +166,11 @@ class Materia:
 
         if not nombre:
             raise ValueError("El nombre es obligatorio.")
+
+        if not any(letra.isalpha() for letra in nombre):
+            raise ValueError(
+                "El nombre de la materia debe contener letras."
+            )
 
         if isinstance(cupo, bool) or not isinstance(cupo, int):
             raise ValueError("El cupo debe ser un numero entero.")

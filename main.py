@@ -17,7 +17,7 @@ def mostrar_menu():
     print("2. Registrar docente")
     print("3. Agregar materia")
     print("4. Inscribir persona")
-    print("5. Listar informacion")
+    print("5. Lista de informacion")
     print("6. Guardar informacion")
     print("0. Guardar y salir")
 
