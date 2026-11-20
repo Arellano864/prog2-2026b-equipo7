@@ -23,6 +23,12 @@
             "codigo": "778896748",
             "nombre": "Chava",
             "departamento": "Base de datos"
+        },
+        {
+            "tipo": "alumno",
+            "codigo": "222560506",
+            "nombre": "johan",
+            "carrera": "ciberseguridad"
         }
     ],
     "materias": [
@@ -53,6 +59,14 @@
             "inscripciones": [
                 "225996267"
             ]
+        },
+        {
+            "clave": "56789",
+            "nombre": "redees",
+            "cupo": 10,
+            "inscripciones": [
+                "222560506"
+            ]
         }
     ],
     "eventos": [
@@ -65,6 +79,9 @@
         "Se registro Alumno: 225996267",
         "Se registro Docente: 778896748",
         "Se agrego la materia: 204",
-        "Se inscribio 225996267 en la materia 204"
+        "Se inscribio 225996267 en la materia 204",
+        "Se registro Alumno: 222560506",
+        "Se agrego la materia: 56789",
+        "Se inscribio 222560506 en la materia 56789"
     ]
 }
