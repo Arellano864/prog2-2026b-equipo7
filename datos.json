@@ -27,6 +27,12 @@
             "nombre": "Ciencias",
             "cupo": 25,
             "inscripciones": []
+        },
+        {
+            "clave": "23456789",
+            "nombre": "papois",
+            "cupo": 10,
+            "inscripciones": []
         }
     ],
     "eventos": [
@@ -34,6 +40,7 @@
         "Se registro Docente: 987654321",
         "Se agrego la materia: 3312",
         "Se inscribio 123456789 en la materia 3312",
-        "Se agrego la materia: 4567"
+        "Se agrego la materia: 4567",
+        "Se agrego la materia: 23456789"
     ]
 }
