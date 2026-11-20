@@ -1,3 +1,4 @@
+
 """Almacenamiento y recuperacion de informacion."""
 
 import json
@@ -18,7 +19,7 @@ class Bitacora:
         self._eventos.append(str(mensaje))
 
     def obtener_eventos(self):
-        """Devuelve los eventos registrados."""
+        """Devuelve una copia de los eventos."""
         return list(self._eventos)
 
 
@@ -104,13 +105,41 @@ def cargar(sistema, ruta):
             "No se pudo leer el archivo."
         ) from error
 
+    if not isinstance(datos, dict):
+        raise ValueError(
+            "La estructura del archivo de datos es invalida."
+        )
+
+    personas = datos.get("personas", [])
+    materias = datos.get("materias", [])
+    eventos = datos.get("eventos", [])
+
+    if not all(isinstance(lista, list) for lista in (
+        personas, materias, eventos
+    )):
+        raise ValueError(
+            "La informacion del archivo tiene un formato invalido."
+        )
+
     temporal = SistemaEscolar()
 
-    for registro in datos.get("personas", []):
+    for registro in personas:
+
+        if not isinstance(registro, dict):
+            raise ValueError(
+                "Existe un registro de persona invalido."
+            )
 
         tipo = registro.get("tipo")
 
         if tipo == "alumno":
+
+            if not all(campo in registro for campo in (
+                "codigo", "nombre", "carrera"
+            )):
+                raise ValueError(
+                    "El registro del alumno esta incompleto."
+                )
 
             persona = Alumno(
                 registro["codigo"],
@@ -119,6 +148,13 @@ def cargar(sistema, ruta):
             )
 
         elif tipo == "docente":
+
+            if not all(campo in registro for campo in (
+                "codigo", "nombre", "departamento"
+            )):
+                raise ValueError(
+                    "El registro del docente esta incompleto."
+                )
 
             persona = Docente(
                 registro["codigo"],
@@ -133,7 +169,19 @@ def cargar(sistema, ruta):
 
         temporal.registrar(persona)
 
-    for registro in datos.get("materias", []):
+    for registro in materias:
+
+        if not isinstance(registro, dict):
+            raise ValueError(
+                "Existe un registro de materia invalido."
+            )
+
+        if not all(campo in registro for campo in (
+            "clave", "nombre", "cupo"
+        )):
+            raise ValueError(
+                "El registro de la materia esta incompleto."
+            )
 
         materia = Materia(
             registro["clave"],
@@ -143,18 +191,25 @@ def cargar(sistema, ruta):
 
         temporal.agregar_materia(materia)
 
-    for registro in datos.get("materias", []):
+    for registro in materias:
 
-        clave = registro["clave"]
+        inscripciones = registro.get("inscripciones", [])
 
-        for codigo in registro.get("inscripciones", []):
+        if not isinstance(inscripciones, list):
+            raise ValueError(
+                "Las inscripciones tienen un formato invalido."
+            )
 
-            temporal.asignar(codigo, clave)
+        for codigo in inscripciones:
+
+            temporal.asignar(
+                codigo,
+                registro["clave"]
+            )
 
     sistema._personas = temporal._personas
     sistema._materias = temporal._materias
-
     sistema._bitacora = Bitacora()
 
-    for evento in datos.get("eventos", []):
+    for evento in eventos:
         sistema._bitacora.registrar_evento(evento)

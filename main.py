@@ -1,4 +1,5 @@
-"""Menú principal del sistema escolar."""
+
+"""Menu principal del sistema escolar."""
 
 from modelo import Alumno, Docente, Materia
 from sistema import SistemaEscolar
@@ -77,7 +78,16 @@ def ejecutar():
 
                 clave = input("Clave de la materia: ")
                 nombre = input("Nombre de la materia: ")
-                cupo = int(input("Cupo maximo: "))
+
+                cupo_texto = input("Cupo maximo: ")
+
+                try:
+                    cupo = int(cupo_texto)
+
+                except ValueError:
+                    raise ValueError(
+                        "El cupo debe ser un numero entero."
+                    )
 
                 materia = Materia(
                     clave,
@@ -85,7 +95,7 @@ def ejecutar():
                     cupo
                 )
 
-                sistema.agregar_materia(materia)
+                sistema.registrar(materia)
 
                 print("Materia agregada correctamente.")
 
@@ -127,9 +137,9 @@ def ejecutar():
 
             else:
 
-                print("Opcion no volida.")
+                print("Opcion no valida.")
 
-        except (ValueError, TypeError) as error:
+        except (ValueError, TypeError, OSError) as error:
 
             print(f"No se pudo realizar la operacion: {error}")
 

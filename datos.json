@@ -11,6 +11,18 @@
             "codigo": "987654321",
             "nombre": "Julian",
             "departamento": "Hacking"
+        },
+        {
+            "tipo": "alumno",
+            "codigo": "225996267",
+            "nombre": "Jorge Papoi",
+            "carrera": "Ciberseguridad"
+        },
+        {
+            "tipo": "docente",
+            "codigo": "778896748",
+            "nombre": "Chava",
+            "departamento": "Base de datos"
         }
     ],
     "materias": [
@@ -33,6 +45,14 @@
             "nombre": "papois",
             "cupo": 10,
             "inscripciones": []
+        },
+        {
+            "clave": "204",
+            "nombre": "Base de datos",
+            "cupo": 35,
+            "inscripciones": [
+                "225996267"
+            ]
         }
     ],
     "eventos": [
@@ -41,6 +61,10 @@
         "Se agrego la materia: 3312",
         "Se inscribio 123456789 en la materia 3312",
         "Se agrego la materia: 4567",
-        "Se agrego la materia: 23456789"
+        "Se agrego la materia: 23456789",
+        "Se registro Alumno: 225996267",
+        "Se registro Docente: 778896748",
+        "Se agrego la materia: 204",
+        "Se inscribio 225996267 en la materia 204"
     ]
 }

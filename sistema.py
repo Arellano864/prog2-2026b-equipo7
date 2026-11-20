@@ -1,3 +1,4 @@
+
 """Administracion del sistema escolar."""
 
 from modelo import Alumno, Docente, Materia, Inscripcion
@@ -29,29 +30,16 @@ class SistemaEscolar:
             )
 
     def registrar(self, objeto):
-        """Registra un alumno o docente."""
+        """Registra alumnos, docentes o materias."""
+
+        if isinstance(objeto, Materia):
+            self.agregar_materia(objeto)
+            return
 
         if not isinstance(objeto, (Alumno, Docente)):
-            raise TypeError(
-                "Solo se pueden registrar alumnos o docentes."
-            )
-
-        if not objeto.nombre:
             raise ValueError(
-                "El nombre es obligatorio."
+                "Solo se pueden registrar alumnos, docentes o materias."
             )
-
-        if isinstance(objeto, Alumno):
-            if not objeto.carrera:
-                raise ValueError(
-                    "La carrera del alumno es obligatoria."
-                )
-
-        if isinstance(objeto, Docente):
-            if not objeto.departamento:
-                raise ValueError(
-                    "El departamento del docente es obligatorio."
-                )
 
         self._validar_codigo(objeto.codigo)
 
@@ -71,27 +59,8 @@ class SistemaEscolar:
         """Registra una materia con cupo limitado."""
 
         if not isinstance(materia, Materia):
-            raise TypeError(
+            raise ValueError(
                 "El objeto debe ser una materia."
-            )
-
-        if not materia.clave:
-            raise ValueError(
-                "La clave de la materia es obligatoria."
-            )
-
-        if not materia.nombre:
-            raise ValueError(
-                "El nombre de la materia es obligatorio."
-            )
-
-        if (
-            isinstance(materia.cupo, bool)
-            or not isinstance(materia.cupo, int)
-            or materia.cupo <= 0
-        ):
-            raise ValueError(
-                "El cupo debe ser un numero entero mayor que cero."
             )
 
         if materia.clave in self._materias:

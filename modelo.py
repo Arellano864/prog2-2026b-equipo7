@@ -7,8 +7,17 @@ class Persona:
 
     def __init__(self, codigo, nombre):
         """Inicializa los datos comunes."""
-        self._codigo = str(codigo).strip()
-        self._nombre = str(nombre).strip()
+        codigo = str(codigo).strip()
+        nombre = str(nombre).strip()
+
+        if not codigo:
+            raise ValueError("El codigo es obligatorio.")
+
+        if not nombre:
+            raise ValueError("El nombre es obligatorio.")
+
+        self._codigo = codigo
+        self._nombre = nombre
 
     @property
     def codigo(self):
@@ -33,7 +42,13 @@ class Alumno(Persona):
     def __init__(self, codigo, nombre, carrera):
         """Inicializa los datos del alumno."""
         super().__init__(codigo, nombre)
-        self._carrera = str(carrera).strip()
+
+        carrera = str(carrera).strip()
+
+        if not carrera:
+            raise ValueError("La carrera es obligatoria.")
+
+        self._carrera = carrera
 
     @property
     def carrera(self):
@@ -54,7 +69,13 @@ class Docente(Persona):
     def __init__(self, codigo, nombre, departamento):
         """Inicializa los datos del docente."""
         super().__init__(codigo, nombre)
-        self._departamento = str(departamento).strip()
+
+        departamento = str(departamento).strip()
+
+        if not departamento:
+            raise ValueError("El departamento es obligatorio.")
+
+        self._departamento = departamento
 
     @property
     def departamento(self):
@@ -75,8 +96,21 @@ class Inscripcion:
 
     def __init__(self, codigo_persona, clave_materia):
         """Inicializa una inscripcion."""
-        self._codigo_persona = str(codigo_persona)
-        self._clave_materia = str(clave_materia)
+        codigo_persona = str(codigo_persona).strip()
+        clave_materia = str(clave_materia).strip()
+
+        if not codigo_persona:
+            raise ValueError(
+                "El codigo de persona es obligatorio."
+            )
+
+        if not clave_materia:
+            raise ValueError(
+                "La clave de materia es obligatoria."
+            )
+
+        self._codigo_persona = codigo_persona
+        self._clave_materia = clave_materia
 
     @property
     def codigo_persona(self):
@@ -94,8 +128,25 @@ class Materia:
 
     def __init__(self, clave, nombre, cupo):
         """Inicializa los datos de la materia."""
-        self._clave = str(clave).strip()
-        self._nombre = str(nombre).strip()
+        clave = str(clave).strip()
+        nombre = str(nombre).strip()
+
+        if not clave:
+            raise ValueError("La clave es obligatoria.")
+
+        if not nombre:
+            raise ValueError("El nombre es obligatorio.")
+
+        if isinstance(cupo, bool) or not isinstance(cupo, int):
+            raise ValueError("El cupo debe ser un numero entero.")
+
+        if cupo <= 0:
+            raise ValueError(
+                "El cupo debe ser mayor que cero."
+            )
+
+        self._clave = clave
+        self._nombre = nombre
         self._cupo = cupo
         self._inscripciones = []
 
@@ -126,4 +177,15 @@ class Materia:
 
     def agregar_inscripcion(self, inscripcion):
         """Agrega una inscripcion a la materia."""
+
+        if not isinstance(inscripcion, Inscripcion):
+            raise ValueError(
+                "Se requiere una inscripcion valida."
+            )
+
+        if self.lugares_disponibles <= 0:
+            raise ValueError(
+                "La materia no tiene lugares disponibles."
+            )
+
         self._inscripciones.append(inscripcion)
